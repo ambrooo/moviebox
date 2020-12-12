@@ -3,7 +3,7 @@
         <router-link to="/" class="back px-3">Back to movies</router-link>
         <div class="d-flex">
             <img class="w-50" :src="'http://image.tmdb.org/t/p/original/'+mainMovie.backdrop_path" :alt="mainMovie.title">
-            <div class="w-50">
+            <div class="w-50 text-white bg-dark">
                 <h1 class="text-center p-5 text-uppercase">{{mainMovie.title}}</h1>
                 <h3>{{mainMovie.overview}}</h3>
             </div>
@@ -18,13 +18,12 @@
                             md="6"
                             class="movie"
                     >
-
                         <img
                                 :src="'http://image.tmdb.org/t/p/w500/'+movie.poster_path"
                                 :alt="movie.title"
                                 class="w-100"
                         >
-                        <a :href="'/movie/'+movie.id" class="movie-details d-block">
+                        <router-link :to="{name: 'movie', params: { id: movie.id }}" class="movie-details d-block">
                             <div class="d-flex pt-2 mb-3 title">
                                 <h3 class=" d-inline-block">{{ movie.title }}</h3>
                                 <i class="icon-heart ml-auto cursor-pointer movie-heart"
@@ -44,7 +43,7 @@
                                     <i class="icon-tag"></i> {{movieGenre(movie.genre_ids)}}
                                 </div>
                             </div>
-                        </a>
+                        </router-link>
                     </b-col>
                 </b-row>
             </div>
