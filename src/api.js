@@ -1,0 +1,4 @@
+export default
+{
+    key: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYTJmMzdlN2VkMWE0MWM3NjdmNWMzYjA5YTdiZDczMiIsInN1YiI6IjVmZDM5NjAwZjA1NmQ1MDAzZDYzNjg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6LQFLq8Fc8uI7kbrMS1dZVwj1uf7nJCihpnWM_f5Ebo'
+}
