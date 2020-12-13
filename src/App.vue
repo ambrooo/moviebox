@@ -1,13 +1,20 @@
 <template>
-    <div id="app">
+    <div id="app" v-if="dataLoaded">
         <router-view :key="$route.fullPath"></router-view>
     </div>
 </template>
 <script>
 
     export default {
+        data(){
+            return{
+                dataLoaded:false,
+            }
+        },
         mounted() {
-            this.$store.dispatch('getGenres')
+            this.$store.dispatch('getGenres').then(
+                (resp) => this.dataLoaded = true
+            )
         }
     }
 </script>
