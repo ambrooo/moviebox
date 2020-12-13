@@ -1,7 +1,10 @@
 # moviebox
 
+Install dependecies
 ```npm install```
 
-edit [api.js](src/api.js)
+Add your TMBD api key here
+ [api.js](src/api.js)
 
+Run the application
 ```npm run serve```
