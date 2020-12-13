@@ -17,7 +17,7 @@
                 </b-collapse>
             </b-navbar>
         </div>
-        <div class="Movies" v-if="movies.length">
+        <div class="movies" v-if="movies.length">
             <div class="container-fluid p-0">
                 <b-row no-gutters>
                     <b-col

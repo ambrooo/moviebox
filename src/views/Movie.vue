@@ -1,14 +1,22 @@
 <template>
     <div v-if="movieLoaded">
         <router-link to="/" class="back px-3">Back to movies</router-link>
-        <div class="d-flex">
-            <img class="w-50" :src="'http://image.tmdb.org/t/p/original/'+mainMovie.backdrop_path" :alt="mainMovie.title">
-            <div class="w-50 text-white bg-dark">
-                <h1 class="text-center p-5 text-uppercase">{{mainMovie.title}}</h1>
-                <h3>{{mainMovie.overview}}</h3>
+        <div class="row no-gutters d-flex">
+            <img class="col-md-6" :src="'http://image.tmdb.org/t/p/original/'+mainMovie.backdrop_path" :alt="mainMovie.title">
+            <div class="col-md-6 text-white bg-info p-3 d-flex flex-column">
+                <div>
+                    <h1 class="text-uppercase d-inline-block">{{mainMovie.title}}</h1> <h4 class="d-inline-block ml-3"><i class="icon-calendar"></i> {{formatedDate(mainMovie.release_date)}}</h4>
+                    <p class="font-italic">{{mainMovie.overview}}</p>
+                </div>
+                <div class="mt-auto mb-3">
+                    <p><i class="icon-credit-card"></i> {{movieFinance}}</p>
+                    <div class="genre text-white font-weight-bold">
+                        <i class="icon-tag"></i> {{movieGenre(mainMovie.genres.map(x=>x.id))}}
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="Movies p-0" v-if="similars.length">
+        <div class="movies p-0" v-if="similars.length">
             <div class="container-fluid p-0">
                 <b-row no-gutters>
                     <b-col
@@ -48,6 +56,9 @@
                 </b-row>
             </div>
         </div>
+        <div class="d-flex justify-content-center my-5">
+            <h3>That's all folks</h3>
+        </div>
     </div>
 </template>
 
@@ -67,7 +78,15 @@
                 similars:'getSimilar',
                 favorites: 'getFavorites',
                 genres: 'getGenres',
-            })
+            }),
+            movieFinance(){
+                let formatter = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                });
+                let diff = this.mainMovie.revenue - this.mainMovie.budget
+                return (diff>=0?'Profit ':'Loss ')+formatter.format(Math.abs(diff))
+            }
         },
         methods:{
             getMovie(){
